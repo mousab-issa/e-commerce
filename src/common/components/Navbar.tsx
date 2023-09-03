@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
 import { BiSearchAlt } from "react-icons/bi";
-import { useCookies } from "react-cookie";
 
 import logo from "src/assets/logo.svg";
 
-const Navbar = () => {
-  const [cookie, , removeCookie] = useCookies(["token", "id"]);
+export const Navbar = () => {
   return (
     <div className="navbar sticky top-0 z-50 bg-gray-100 lg:px-10 shadow-lg mb-20 py-4">
       <section className="navbar-start">
@@ -46,5 +44,3 @@ const Navbar = () => {
     </div>
   );
 };
-
-export default Navbar;

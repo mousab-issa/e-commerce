@@ -1,11 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { FC, Fragment, useEffect } from "react";
-import axios from "axios";
-
-import Layout from "common/components/Layout";
-import Navbar from "common/components/Navbar";
-import { useAppSelector } from "store/hooks";
-import { selectProductById } from "./selectors";
+import { FC, Fragment } from "react";
 import { Product } from "./types";
 
 interface ProductDetailsCardProps {

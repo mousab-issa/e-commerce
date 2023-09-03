@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-import Layout from "common/components/Layout";
-import Navbar from "common/components/Navbar";
+import { Layout, Navbar } from "common";
 
 import { useAppDispatch, useAppSelector } from "store/hooks";
 
