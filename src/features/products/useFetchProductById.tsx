@@ -11,7 +11,7 @@ import { Product } from "./types";
  * @param product The product object (or null/undefined if not loaded)
  * @param id The ID of the product to be fetched
  */
-const useFetchProductById = (
+export const useFetchProductById = (
   product: Product | null | undefined,
   id?: string | number
 ) => {
@@ -23,5 +23,3 @@ const useFetchProductById = (
     }
   }, [id, dispatch, product]);
 };
-
-export default useFetchProductById;
