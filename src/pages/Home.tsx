@@ -1,24 +1,24 @@
 import "styles/index.css";
 
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Layout, Navbar } from "common";
 
 import { useAppDispatch, useAppSelector } from "store/hooks";
 
-import { fetchProducts, Product, ProductCard } from "features/products";
+import {
+  useFetchProducts,
+  fetchProducts,
+  Product,
+  ProductCard,
+} from "features/products";
 
 function App() {
-  const dispatch = useAppDispatch();
-
   const navigate = useNavigate();
 
   const products = useAppSelector((state) => state.product.products);
 
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, []);
+  useFetchProducts();
 
   const renderProduct = (product: Product) => {
     return (

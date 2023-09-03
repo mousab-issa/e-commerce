@@ -6,3 +6,4 @@ export * from "./selectors";
 export * from "./ProductDetailsCard";
 export * from "./ProductCard";
 export * from "./useFetchProductById";
+export * from "./useFetchProducts";
