@@ -9,6 +9,7 @@ import { useEffect } from "react";
 
 import { setupApiInterceptors } from "services";
 import { Provider } from "react-redux";
+import { Toaster } from "features/toaster";
 
 const App = () => {
   const removeCookie = useCookies(["token"])[2];
@@ -33,6 +34,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <RouterProvider router={router} />;
+      <Toaster />
     </Provider>
   );
 };

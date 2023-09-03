@@ -5,6 +5,7 @@ import { api } from "services";
 
 import { feature } from "./constants";
 import { Product } from "./types";
+import { showToaster } from "features/toaster/state";
 
 export const fetchProducts = createAsyncThunk(
   `${feature}/fetchProducts`,
@@ -14,7 +15,13 @@ export const fetchProducts = createAsyncThunk(
 
       return products?.data;
     } catch (error) {
-      console.error("Error", error);
+      thunkAPI.dispatch(
+        showToaster({
+          message: "Products fetched successfully",
+          type: "success",
+        })
+      );
+      thunkAPI.rejectWithValue(error);
     }
   }
 );
