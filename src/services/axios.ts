@@ -7,7 +7,9 @@ export const api = axios.create({
 });
 
 // We can setup cookies here
-export const setupApiInterceptors = (removeToken: any) => {
+export const setupApiInterceptors = (
+  removeToken: (name: "token", options?: any) => void
+) => {
   api.interceptors.request.use(function (config) {
     const [cookie] = useCookies(["token"]);
     const checkToken = cookie.token;
@@ -23,7 +25,8 @@ export const setupApiInterceptors = (removeToken: any) => {
       return response;
     },
     function (error) {
-      const { data } = error.response;
+      const data = error.response?.data;
+
       if (
         data === "Missing or malformed JWT" ||
         [401, 403].includes(data.code)
