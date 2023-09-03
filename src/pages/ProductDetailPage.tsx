@@ -1,27 +1,21 @@
-import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { Layout, Navbar } from "common";
 
-import { useAppDispatch, useAppSelector } from "store/hooks";
+import { useAppSelector } from "store/hooks";
 
 import {
-  fetchProductById,
   ProductDetailsCard,
   selectProductById,
+  useFetchProductById,
 } from "features/products";
 
 const DetailProduct = () => {
   const { id } = useParams();
 
-  const dispatch = useAppDispatch();
   const product = useAppSelector(selectProductById(Number(id)));
 
-  useEffect(() => {
-    if (!product) {
-      dispatch(fetchProductById(Number(id)));
-    }
-  }, [id, dispatch]);
+  useFetchProductById(product, id);
 
   return (
     <Layout>
