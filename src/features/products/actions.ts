@@ -17,10 +17,12 @@ export const fetchProducts = createAsyncThunk(
     } catch (error) {
       thunkAPI.dispatch(
         showToaster({
-          message: "Products fetched successfully",
-          type: "success",
+          message: "Error fetching Products",
+          type: "error",
         })
       );
+      console.log(error);
+
       thunkAPI.rejectWithValue(error);
     }
   }

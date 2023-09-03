@@ -27,6 +27,10 @@ export const setupApiInterceptors = (
     function (error) {
       const data = error.response?.data;
 
+      if (!data) {
+        return;
+      }
+
       if (
         data === "Missing or malformed JWT" ||
         [401, 403].includes(data.code)
