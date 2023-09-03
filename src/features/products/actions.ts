@@ -3,12 +3,15 @@ import api from "services/axios";
 import { feature } from "./constants";
 
 export const fetchProducts = createAsyncThunk(
-  `${feature}/fetch`,
+  `${feature}/fetchProducts`,
   async (_, thunkAPI) => {
     try {
       const products = await api.get("products/");
+
       return products.data;
     } catch (error) {
+      console.log("error", error);
+
       thunkAPI.rejectWithValue(error);
     }
   }

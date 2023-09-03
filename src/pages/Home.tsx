@@ -1,21 +1,26 @@
 import "styles/index.css";
+
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
 import Layout from "common/components/Layout";
 import Navbar from "common/components/Navbar";
+
 import { useAppDispatch, useAppSelector } from "store/hooks";
+
 import { fetchProducts, Product, ProductCard } from "features/products";
 
 function App() {
   const dispatch = useAppDispatch();
+
   const navigate = useNavigate();
+
   const products = useAppSelector((state) => state.product.products);
 
   useEffect(() => {
-    const fetchData = async () => {
+    if (!products.length) {
       dispatch(fetchProducts());
-    };
-    fetchData();
+    }
   }, []);
 
   const renderProduct = (product: Product) => {

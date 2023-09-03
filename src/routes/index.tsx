@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import store from "store";
 
 import DetailProduct from "pages/ProductDetailPage";
 
@@ -7,6 +8,7 @@ import Home from "pages/Home";
 import { useEffect } from "react";
 
 import { setupApiInterceptors } from "services/axios";
+import { Provider } from "react-redux";
 
 const App = () => {
   const removeCookie = useCookies(["token"])[2];
@@ -28,7 +30,11 @@ const App = () => {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <Provider store={store}>
+      <RouterProvider router={router} />;
+    </Provider>
+  );
 };
 
 export default App;

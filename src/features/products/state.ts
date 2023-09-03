@@ -13,19 +13,23 @@ const productsSlice = createSlice({
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.loading = "succeeded";
+
+        if (!action.payload) {
+          return;
+        }
+
         state.products = action.payload;
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.loading = "failed";
         state.error = action.error.message || "Failed to fetch products";
       })
-
       .addCase(fetchProductById.pending, (state) => {
         state.loading = "pending";
       })
       .addCase(fetchProductById.fulfilled, (state, action) => {
         state.loading = "idle";
-        state.products.push(action.payload);
+        state.products = [...state.products, action.payload];
       })
       .addCase(fetchProductById.rejected, (state, action) => {
         state.loading = "idle";
