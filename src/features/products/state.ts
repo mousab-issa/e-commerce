@@ -18,7 +18,15 @@ const productsSlice = createSlice({
           return;
         }
 
-        state.products = action.payload;
+        const productMap = new Map(
+          state.products.map((product) => [product.id, product])
+        );
+
+        action.payload.forEach((product) => {
+          productMap.set(product.id, product); // This ensures no duplicates as IDs are unique keys
+        });
+
+        state.products = [...productMap.values()];
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.loading = "failed";
@@ -29,6 +37,10 @@ const productsSlice = createSlice({
       })
       .addCase(fetchProductById.fulfilled, (state, action) => {
         state.loading = "idle";
+        if (!action.payload) {
+          return;
+        }
+
         state.products = [...state.products, action.payload];
       })
       .addCase(fetchProductById.rejected, (state, action) => {

@@ -17,9 +17,7 @@ function App() {
   const products = useAppSelector((state) => state.product.products);
 
   useEffect(() => {
-    if (!products.length) {
-      dispatch(fetchProducts());
-    }
+    dispatch(fetchProducts());
   }, []);
 
   const renderProduct = (product: Product) => {
@@ -33,6 +31,7 @@ function App() {
           price={product.price}
           description={product.description}
           category={product.category}
+          rating={product.rating}
         />
       </div>
     );

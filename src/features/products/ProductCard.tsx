@@ -1,7 +1,14 @@
+import { Rating } from "common";
 import { FC } from "react";
 import { Product } from "./types";
 
-export const ProductCard: FC<Product> = ({ id, image, title, price }) => {
+export const ProductCard: FC<Product> = ({
+  id,
+  rating,
+  image,
+  title,
+  price,
+}) => {
   return (
     <div className="card transition-transform transform hover:scale-105 active:scale-100 w-full h-full bg-white shadow-md p-4 duration-300 hover:cursor-pointer rounded-xl hover:shadow-lg">
       <figure className="pb-4 w-full h-52 relative">
@@ -15,6 +22,8 @@ export const ProductCard: FC<Product> = ({ id, image, title, price }) => {
       <h2 className="text-lg font-extrabold text-gray-800 truncate mb-2">
         {title}
       </h2>
+
+      {rating?.rate && <Rating value={rating?.rate} />}
 
       <p className="text-gray-700 font-semibold">${price}</p>
     </div>

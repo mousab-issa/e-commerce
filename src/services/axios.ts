@@ -2,10 +2,11 @@ import axios from "axios";
 import { BASE_URL } from "common/config/endpoints";
 import { useCookies } from "react-cookie";
 
-const api = axios.create({
+export const api = axios.create({
   baseURL: BASE_URL,
 });
 
+// We can setup cookies here
 export const setupApiInterceptors = (removeToken: any) => {
   api.interceptors.request.use(function (config) {
     const [cookie] = useCookies(["token"]);
@@ -33,5 +34,3 @@ export const setupApiInterceptors = (removeToken: any) => {
     }
   );
 };
-
-export default api;
